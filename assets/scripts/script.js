@@ -18,19 +18,22 @@ var currentDate = moment();
 
 $("#currentDay").text(currentDate.format("MMM Do, YYYY"));
 
-$(".container").append("<form>");
-$("form").addClass("form-group");
+$(".container").append("<form class='form-group'>");
 
-$(".form-group").append("<div>");
+$(".form-group").append("<div class='row col-12'>");
 
-$(".form-group").append("<textarea>");
-$("textarea").addClass("form-control");
-$(".form-group").append("<button>");
-$("button").addClass("saveBtn");
-$(".saveBtn").text("Save");
-
-$(".form-group").append("<textarea>");
-$("textarea").addClass("form-control");
+for (var i = 0; i < 9; i++) {
+    $(".row").append("<p class='hour col-2'>")
+    $(".row").append("<textarea class='form-control col-8'>");
+    $(".row").append("<button class='saveBtn col-2'>");
+    $(".saveBtn").text("Save");
+}
+// $(".row").append("<textarea class='form-control col-10'>");
+// $(".row").append("<button class='saveBtn col-2'>");
+// $(".saveBtn").text("Save");
+// $(".row").append("<textarea class='form-control col-10'>");
+// $(".row").append("<button class='saveBtn col-2'>");
+// $(".saveBtn").text("Save");
 // $("button").click(function(){
 //     $("p:first").addClass("intro");
 // });
