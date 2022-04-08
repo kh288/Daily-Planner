@@ -21,19 +21,19 @@ function generateBlocks() {
 // color coat the rows appropriate for the time
 function colorRows() {
     var currentHour = moment().format("ha");
-    console.log(hourTimes.indexOf(currentHour));
+    // console.log(hourTimes.indexOf(currentHour));
     // var curH = moment().format("h");
 
     for (var i = 0; i < hourTimes.length; i++) {
         if (i < hourTimes.indexOf(currentHour) || -1) {
             // past
-            console.log("COLOR FOR PAST ADDED " + i);
+            // console.log("COLOR FOR PAST ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("past");
         } else if (i === hourTimes.indexOf(currentHour)) {
-            console.log("COLOR FOR PRESENT ADDED " + i);
+            // console.log("COLOR FOR PRESENT ADDED " + i);
             $("#hour" + currentHour).addClass("present");
         } else {
-            console.log("COLOR FOR FUTURE ADDED " + i);
+            // console.log("COLOR FOR FUTURE ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("future");
         }
     }
