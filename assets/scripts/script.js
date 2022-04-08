@@ -14,26 +14,46 @@
 // 3pm  [6]
 // 4pm  [7]
 // 5pm  [8]
-var currentDate = moment();
-
-$("#currentDay").text(currentDate.format("MMM Do, YYYY"));
-
-$(".container").append("<form class='form-group'>");
-
-$(".form-group").append("<div class='row col-12'>");
-
-for (var i = 0; i < 9; i++) {
-    $(".row").append("<p class='hour col-2'>")
-    $(".row").append("<textarea class='form-control col-8'>");
-    $(".row").append("<button class='saveBtn col-2'>");
-    $(".saveBtn").text("Save");
-}
-// $(".row").append("<textarea class='form-control col-10'>");
-// $(".row").append("<button class='saveBtn col-2'>");
-// $(".saveBtn").text("Save");
-// $(".row").append("<textarea class='form-control col-10'>");
-// $(".row").append("<button class='saveBtn col-2'>");
-// $(".saveBtn").text("Save");
 // $("button").click(function(){
 //     $("p:first").addClass("intro");
 // });
+
+var currentDate = moment();
+var hourTimes = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+var hourTextContent = ["", "", "", "", "", "", "", "", ""];
+
+$("#currentDay").text(currentDate.format("MMM Do, YYYY"));
+$(".container").append("<form class='row col-12 form-group'>");
+formGroup = $(".form-group");
+
+// generate rows
+function generateBlocks() {
+    // Generate rows to the number of hours we stored in our Hour Times array
+    for (var i = 0; i < hourTimes.length; i++) {
+        // Create each element and append
+        formGroup.append("<p class='hour col-2'>");
+        $("p").last().attr("id","hour" + hourTimes[i]);
+        $("p").last().text(hourTimes[i]);
+        // $(hourTimes[i])
+        $(formGroup).append("<textarea class='form-control col-8'>");
+        $(formGroup).append("<button class='saveBtn col-2'>");
+        $(".saveBtn").text("Save");
+    }
+}
+
+generateBlocks();
+
+
+
+// function remove(event) {
+//     var
+// }
+// event.currentTarget;
+
+// $(".row").append("<p class='hour col-2'>");
+// var timeVis = $("p").attr("id",hourTimes[0]);
+// rowVal.attr("id",hourTimes[0]);
+
+// .attr('id', 'taco');
+
+// var valueThing = $("<div>").addClass("");
