@@ -1,6 +1,6 @@
 var currentDate = moment();
-var hourTimes =         ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm"];
-var hourTextContent =   [   "",     "",     "",     "",    "",    "",    "",    "",    "",    "",    "", "", "", ""];
+var hourTimes =         ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+var hourTextContent =   [   "",     "",     "",     "",    "",    "",    "",    "",    ""];
 
 $("#currentDay").text(currentDate.format("MMM Do, YYYY"));
 // $(".container").append("<div class='row col-12 form-group'>");
@@ -21,10 +21,11 @@ function generateBlocks() {
 // color coat the rows appropriate for the time
 function colorRows() {
     var currentHour = moment().format("ha");
+    console.log(hourTimes.indexOf(currentHour));
     // var curH = moment().format("h");
 
     for (var i = 0; i < hourTimes.length; i++) {
-        if (i < hourTimes.indexOf(currentHour)) {
+        if (i < hourTimes.indexOf(currentHour) || -1) {
             // past
             console.log("COLOR FOR PAST ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("past");
@@ -37,9 +38,17 @@ function colorRows() {
         }
     }
 }
+// Checks local storage to see if there's anything that needs to be loaded first
+function checkLocalStore() {
+    for(var i = 0; i < hourTimes.length; i++) {
+        $("#hour"+hourTimes[i]).append(localStorage.getItem(i));
+    }
+}
 
+// Run the functions
 generateBlocks();
 colorRows();
+checkLocalStore();
 
 
 // on save click, save information to local storage
@@ -50,7 +59,7 @@ $(".saveBtn").click(function(event) {
     var saveButton = $(this).attr("id");
     
     hourTextContent[saveButton] = $("#hour"+hourTimes[saveButton]).val();
-    localStorage.setItem(hourTimes[saveButton], hourTextContent[saveButton]);
+    localStorage.setItem(saveButton, hourTextContent[saveButton]);
 
     console.log(saveButton);
     console.log(hourTextContent[saveButton]);
