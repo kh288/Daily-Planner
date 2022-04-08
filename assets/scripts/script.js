@@ -14,29 +14,29 @@
 // 3pm  [6]
 // 4pm  [7]
 // 5pm  [8]
+
 // $("button").click(function(){
 //     $("p:first").addClass("intro");
 // });
 
 var currentDate = moment();
-var hourTimes =         ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
-var hourTextContent =   [   "",     "",     "",     "",    "",    "",    "",    "",    "",    "",    ""];
+var hourTimes =         ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm"];
+var hourTextContent =   [   "",     "",     "",     "",    "",    "",    "",    "",    "",    "",    "", ""];
 
 $("#currentDay").text(currentDate.format("MMM Do, YYYY"));
-$(".container").append("<form class='row col-12 form-group'>");
-formGroup = $(".form-group");
+// $(".container").append("<div class='row col-12 form-group'>");
+// formGroup = $(".container");
 
 // generate rows
 function generateBlocks() {
     // Generate rows to the number of hours we stored in our Hour Times array
     for (var i = 0; i < hourTimes.length; i++) {
-        // Create each element and append
-        formGroup.append("<p class='hour col-2'>");
-        $("p").last();
-        $("p").last().text(hourTimes[i]);
-        $(formGroup).append("<textarea id='hour"+hourTimes[i]+"'class='form-control col-8'>");
-        $(formGroup).append("<button class='saveBtn col-2'>");
-        $(".saveBtn").text("Save");
+        $(".container").append($("<div class='row col-12 form-group'></div>"));
+            $(".row").last().append("<p class='hour col-2'>");
+            $(".hour").last().text(hourTimes[i]);
+            $(".row").last().append("<textarea id='hour"+hourTimes[i]+"'class='form-control col-8'>");
+            $(".row").last().append("<button class='saveBtn col-2'>");
+            $(".saveBtn").last().text("Save");
     }
 }
 
@@ -50,20 +50,38 @@ function colorRows() {
     for (var i = 0; i < hourTimes.length; i++) {
         if (i < hourTimes.indexOf(currentHour)) {
             // past
-            console.log("PAST ADDED")
+            console.log("COLOR FOR PAST ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("past");
         } else if (i === hourTimes.indexOf(currentHour)) {
+            console.log("COLOR FOR PRESENT ADDED " + i);
             $("#hour" + currentHour).addClass("present");
         } else {
+            console.log("COLOR FOR FUTURE ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("future");
         }
     }
     
     // console.log($("p")[2].attributes.[2]);
 }
+// formGroup = $(".form-group");
+
+// $(formGroup).click(function(event) {
+//     event.stopPropagation();
+//     event.preventDefault();
+//     console.log($(event.currentTarget));
+// });
+
+    // event.preventDefault();
+    // event.stopPropagation();
 
 generateBlocks();
 colorRows();
+
+// 
+
+// formGroup.on("click", saveItem);
+// $(event.currentTarget)
+
 // var currentHour = moment().format("ha");
 // console.log(hourTimes.indexOf(currentHour))
 
