@@ -19,8 +19,8 @@
 // });
 
 var currentDate = moment();
-var hourTimes = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
-var hourTextContent = ["", "", "", "", "", "", "", "", ""];
+var hourTimes =         ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
+var hourTextContent =   [   "",     "",     "",     "",    "",    "",    "",    "",    "",    "",    ""];
 
 $("#currentDay").text(currentDate.format("MMM Do, YYYY"));
 $(".container").append("<form class='row col-12 form-group'>");
@@ -32,17 +32,44 @@ function generateBlocks() {
     for (var i = 0; i < hourTimes.length; i++) {
         // Create each element and append
         formGroup.append("<p class='hour col-2'>");
-        $("p").last().attr("id","hour" + hourTimes[i]);
+        $("p").last();
         $("p").last().text(hourTimes[i]);
-        // $(hourTimes[i])
-        $(formGroup).append("<textarea class='form-control col-8'>");
+        $(formGroup).append("<textarea id='hour"+hourTimes[i]+"'class='form-control col-8'>");
         $(formGroup).append("<button class='saveBtn col-2'>");
         $(".saveBtn").text("Save");
     }
 }
 
-generateBlocks();
+function colorRows() {
+    var currentHour = moment().format("ha");
+    var curH = moment().format("h");
+    // if (hourTimes.includes($(".hour" + currentHour).attr('id'))) {
+    //     console.log($(".hour" + currentHour));
+    // }
+    console.log(curH);
+    for (var i = 0; i < hourTimes.length; i++) {
+        if (i < hourTimes.indexOf(currentHour)) {
+            // past
+            console.log("PAST ADDED")
+            $("#hour" + hourTimes[i]).addClass("past");
+        } else if (i === hourTimes.indexOf(currentHour)) {
+            $("#hour" + currentHour).addClass("present");
+        } else {
+            $("#hour" + hourTimes[i]).addClass("future");
+        }
+    }
+    
+    // console.log($("p")[2].attributes.[2]);
+}
 
+generateBlocks();
+colorRows();
+// var currentHour = moment().format("ha");
+// console.log(hourTimes.indexOf(currentHour))
+
+
+// $("hour" + currentHour).attr("class", "present");
+// console.log(colorRows());
 
 
 // function remove(event) {
