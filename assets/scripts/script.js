@@ -25,7 +25,7 @@ function colorRows() {
     // var curH = moment().format("h");
 
     for (var i = 0; i < hourTimes.length; i++) {
-        if (i < hourTimes.indexOf(currentHour) || -1) {
+        if (i < hourTimes.indexOf(currentHour)) {
             // past
             // console.log("COLOR FOR PAST ADDED " + i);
             $("#hour" + hourTimes[i]).addClass("past");
